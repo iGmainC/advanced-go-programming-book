@@ -153,6 +153,13 @@
                     <!-- Page table of contents -->
                     <div class="sidetoc"><nav class="pagetoc"></nav></div>
                     <main>
+                        <!-- 头部 -->
+                        <ul dir="auto">
+                        <li><em>KusonStack一站式可编程配置技术栈: <a href="https://github.com/KusionStack/kusion">https://github.com/KusionStack/kusion</a></em></li>
+                        <li><em>凹语言™: <a href="https://github.com/wa-lang/wa">https://github.com/wa-lang/wa</a></em></li>
+                        </ul>
+                        <hr>
+
                         <h1 id="66-分布式配置管理"><a class="header" href="#66-分布式配置管理">6.6 分布式配置管理</a></h1>
 <p>在分布式系统中，常困扰我们的还有上线问题。虽然目前有一些优雅重启方案，但实际应用中可能受限于我们系统内部的运行情况而没有办法做到真正的 “优雅”。比如我们为了对去下游的流量进行限制，在内存中堆积一些数据，并对堆积设定时间或总量的阈值。在任意阈值达到之后将数据统一发送给下游，以避免频繁的请求超出下游的承载能力而将下游打垮。这种情况下重启要做到优雅就比较难了。</p>
 <p>所以我们的目标还是尽量避免采用或者绕过上线的方式，对线上程序做一些修改。比较典型的修改内容就是程序的配置项。</p>
@@ -302,6 +309,20 @@ func main() {
 <p>具体来讲，在给业务提供配置读取的 SDK 时，最好能够将拿到的配置在业务机器的磁盘上也缓存一份。这样远程配置中心不可用时，可以直接用硬盘上的内容来做兜底。当重新连接上配置中心时，再把相应的内容进行更新。</p>
 <p>加入缓存之后务必需要考虑的是数据一致性问题，当个别业务机器因为网络错误而与其它机器配置不一致时，我们也应该能够从监控系统中知晓。</p>
 <p>我们使用一种手段解决了我们配置更新痛点，但同时可能因为使用的手段而带给我们新的问题。实际开发中，我们要对每一步决策多多思考，以使自己不在问题到来时手足无措。</p>
+
+
+                        <!-- 公众号 -->
+                        <hr>
+                        <table>
+                            <tr>
+                            <td>
+                            <img width="222px"  src="https://github.com/chai2010/advanced-go-programming-book/raw/master/css.png">
+                            </td>
+                            <td>
+                            <img width="222px"  src="https://github.com/chai2010/advanced-go-programming-book/raw/master/cch.png">
+                            </td>
+                            </tr>
+                        </table>
 
                         <div id="giscus-container"></div>
                         <footer class="page-footer">

@@ -153,6 +153,13 @@
                     <!-- Page table of contents -->
                     <div class="sidetoc"><nav class="pagetoc"></nav></div>
                     <main>
+                        <!-- 头部 -->
+                        <ul dir="auto">
+                        <li><em>KusonStack一站式可编程配置技术栈: <a href="https://github.com/KusionStack/kusion">https://github.com/KusionStack/kusion</a></em></li>
+                        <li><em>凹语言™: <a href="https://github.com/wa-lang/wa">https://github.com/wa-lang/wa</a></em></li>
+                        </ul>
+                        <hr>
+
                         <h1 id="37-汇编语言的威力"><a class="header" href="#37-汇编语言的威力">3.7 汇编语言的威力</a></h1>
 <p>汇编语言的真正威力来自两个维度：一是突破框架限制，实现看似不可能的任务；二是突破指令限制，通过高级指令挖掘极致的性能。对于第一个问题，我们将演示如何通过 Go 汇编语言直接访问系统调用，和直接调用 C 语言函数。对于第二个问题，我们将演示 X64 指令中 AVX 等高级指令的简单用法。</p>
 <h2 id="371-系统调用"><a class="header" href="#371-系统调用">3.7.1 系统调用</a></h2>
@@ -305,6 +312,20 @@ LOOP:
 </code></pre>
 <p>其中 VMOVDQU 指令先将 <code>0(SI)(AX*1)</code> 地址开始的 32 字节数据复制到 Y0 寄存器中，然后再复制到 <code>0(DI)(AX*1)</code> 对应的目标内存中。VMOVDQU 指令操作的数据地址可以不用对齐。</p>
 <p>AVX2 共有 16 个 Y 寄存器，每个寄存器有 256bit 位。如果要复制的数据很多，可以多个寄存器同时复制，这样可以利用更高效的流水特性优化性能。</p>
+
+
+                        <!-- 公众号 -->
+                        <hr>
+                        <table>
+                            <tr>
+                            <td>
+                            <img width="222px"  src="https://github.com/chai2010/advanced-go-programming-book/raw/master/css.png">
+                            </td>
+                            <td>
+                            <img width="222px"  src="https://github.com/chai2010/advanced-go-programming-book/raw/master/cch.png">
+                            </td>
+                            </tr>
+                        </table>
 
                         <div id="giscus-container"></div>
                         <footer class="page-footer">

@@ -153,6 +153,13 @@
                     <!-- Page table of contents -->
                     <div class="sidetoc"><nav class="pagetoc"></nav></div>
                     <main>
+                        <!-- 头部 -->
+                        <ul dir="auto">
+                        <li><em>KusonStack一站式可编程配置技术栈: <a href="https://github.com/KusionStack/kusion">https://github.com/KusionStack/kusion</a></em></li>
+                        <li><em>凹语言™: <a href="https://github.com/wa-lang/wa">https://github.com/wa-lang/wa</a></em></li>
+                        </ul>
+                        <hr>
+
                         <h1 id="62-分布式锁"><a class="header" href="#62-分布式锁">6.2 分布式锁</a></h1>
 <p>在单机程序并发或并行修改全局变量时，需要对修改行为加锁以创造临界区。为什么需要加锁呢？我们看看在不加锁的情况下并发计数会发生什么情况：</p>
 <pre><code class="language-go">package main
@@ -433,6 +440,20 @@ func main() {
 <p>业务发展到一定量级的话，就需要从多方面来考虑了。首先是你的锁是否在任何恶劣的条件下都不允许数据丢失，如果不允许，那么就不要使用 Redis 的 <code>setnx</code> 的简单锁。</p>
 <p>对锁数据的可靠性要求极高的话，那只能使用 etcd 或者 ZooKeeper 这种通过一致性协议保证数据可靠性的锁方案。但可靠的背面往往都是较低的吞吐量和较高的延迟。需要根据业务的量级对其进行压力测试，以确保分布式锁所使用的 etcd 或 ZooKeeper 集群可以承受得住实际的业务请求压力。需要注意的是，etcd 和 Zookeeper 集群是没有办法通过增加节点来提高其性能的。要对其进行横向扩展，只能增加搭建多个集群来支持更多的请求。这会进一步提高对运维和监控的要求。多个集群可能需要引入 proxy，没有 proxy 那就需要业务去根据某个业务 id 来做分片。如果业务已经上线的情况下做扩展，还要考虑数据的动态迁移。这些都不是容易的事情。</p>
 <p>在选择具体的方案时，还是需要多加思考，对风险早做预估。</p>
+
+
+                        <!-- 公众号 -->
+                        <hr>
+                        <table>
+                            <tr>
+                            <td>
+                            <img width="222px"  src="https://github.com/chai2010/advanced-go-programming-book/raw/master/css.png">
+                            </td>
+                            <td>
+                            <img width="222px"  src="https://github.com/chai2010/advanced-go-programming-book/raw/master/cch.png">
+                            </td>
+                            </tr>
+                        </table>
 
                         <div id="giscus-container"></div>
                         <footer class="page-footer">

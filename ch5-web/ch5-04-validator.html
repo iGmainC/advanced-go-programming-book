@@ -153,6 +153,13 @@
                     <!-- Page table of contents -->
                     <div class="sidetoc"><nav class="pagetoc"></nav></div>
                     <main>
+                        <!-- 头部 -->
+                        <ul dir="auto">
+                        <li><em>KusonStack一站式可编程配置技术栈: <a href="https://github.com/KusionStack/kusion">https://github.com/KusionStack/kusion</a></em></li>
+                        <li><em>凹语言™: <a href="https://github.com/wa-lang/wa">https://github.com/wa-lang/wa</a></em></li>
+                        </ul>
+                        <hr>
+
                         <h1 id="54-validator-请求校验"><a class="header" href="#54-validator-请求校验">5.4 validator 请求校验</a></h1>
 <p>社区里曾经有人用 <em>图 5-10</em> 来嘲笑 PHP：</p>
 <p><img src="../images/ch6-04-validate.jpg" alt="validate 流程" /></p>
@@ -360,6 +367,20 @@ func main() {
 <p>这里我们简单地对 <code>eq=x</code> 和 <code>email</code> 这两个 tag 进行了支持，读者可以对这个程序进行简单的修改以查看具体的 validate 效果。为了演示精简掉了错误处理和复杂情况的处理，例如 <code>reflect.Int8/16/32/64</code>，<code>reflect.Ptr</code> 等类型的处理，如果给生产环境编写校验库的话，请务必做好功能的完善和容错。</p>
 <p>在前一小节中介绍的开源校验组件在功能上要远比我们这里的例子复杂的多。但原理很简单，就是用反射对结构体进行树形遍历。有心的读者这时候可能会产生一个问题，我们对结构体进行校验时大量使用了反射，而 Go 的反射在性能上不太出众，有时甚至会影响到我们程序的性能。这样的考虑确实有一些道理，但需要对结构体进行大量校验的场景往往出现在 Web 服务，这里并不一定是程序的性能瓶颈所在，实际的效果还是要从 pprof 中做更精确的判断。</p>
 <p>如果基于反射的校验真的成为了你服务的性能瓶颈怎么办？现在也有一种思路可以避免反射：使用 Go 内置的 Parser 对源代码进行扫描，然后根据结构体的定义生成校验代码。我们可以将所有需要校验的结构体放在单独的包内。这就交给读者自己去探索了。</p>
+
+
+                        <!-- 公众号 -->
+                        <hr>
+                        <table>
+                            <tr>
+                            <td>
+                            <img width="222px"  src="https://github.com/chai2010/advanced-go-programming-book/raw/master/css.png">
+                            </td>
+                            <td>
+                            <img width="222px"  src="https://github.com/chai2010/advanced-go-programming-book/raw/master/cch.png">
+                            </td>
+                            </tr>
+                        </table>
 
                         <div id="giscus-container"></div>
                         <footer class="page-footer">

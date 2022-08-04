@@ -153,6 +153,13 @@
                     <!-- Page table of contents -->
                     <div class="sidetoc"><nav class="pagetoc"></nav></div>
                     <main>
+                        <!-- 头部 -->
+                        <ul dir="auto">
+                        <li><em>KusonStack一站式可编程配置技术栈: <a href="https://github.com/KusionStack/kusion">https://github.com/KusionStack/kusion</a></em></li>
+                        <li><em>凹语言™: <a href="https://github.com/wa-lang/wa">https://github.com/wa-lang/wa</a></em></li>
+                        </ul>
+                        <hr>
+
                         <h1 id="53-中间件"><a class="header" href="#53-中间件">5.3 中间件</a></h1>
 <p>本章将对现在流行的 Web 框架中的中间件 (middleware) 技术原理进行分析，并介绍如何使用中间件技术将业务和非业务代码功能进行解耦。</p>
 <h2 id="531-代码泥潭"><a class="header" href="#531-代码泥潭">5.3.1 代码泥潭</a></h2>
@@ -375,6 +382,20 @@ throttler.go
 <p><img src="../images/ch6-03-gin_contrib.png" alt="" /></p>
 <p><em>图 5-9 gin 的中间件仓库</em></p>
 <p>如果读者去阅读 gin 的源码的话，可能会发现 gin 的中间件中处理的并不是 <code>http.Handler</code>，而是一个叫 <code>gin.HandlerFunc</code> 的函数类型，和本节中讲解的 <code>http.Handler</code> 签名并不一样。不过 gin 的 <code>handler</code> 也只是针对其框架的一种封装，中间件的原理与本节中的说明是一致的。</p>
+
+
+                        <!-- 公众号 -->
+                        <hr>
+                        <table>
+                            <tr>
+                            <td>
+                            <img width="222px"  src="https://github.com/chai2010/advanced-go-programming-book/raw/master/css.png">
+                            </td>
+                            <td>
+                            <img width="222px"  src="https://github.com/chai2010/advanced-go-programming-book/raw/master/cch.png">
+                            </td>
+                            </tr>
+                        </table>
 
                         <div id="giscus-container"></div>
                         <footer class="page-footer">

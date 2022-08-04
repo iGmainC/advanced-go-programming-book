@@ -153,6 +153,13 @@
                     <!-- Page table of contents -->
                     <div class="sidetoc"><nav class="pagetoc"></nav></div>
                     <main>
+                        <!-- 头部 -->
+                        <ul dir="auto">
+                        <li><em>KusonStack一站式可编程配置技术栈: <a href="https://github.com/KusionStack/kusion">https://github.com/KusionStack/kusion</a></em></li>
+                        <li><em>凹语言™: <a href="https://github.com/wa-lang/wa">https://github.com/wa-lang/wa</a></em></li>
+                        </ul>
+                        <hr>
+
                         <h1 id="14-函数方法和接口"><a class="header" href="#14-函数方法和接口">1.4 函数、方法和接口</a></h1>
 <p>函数对应操作序列，是程序的基本组成元素。Go 语言中的函数有具名和匿名之分：具名函数一般对应于包级的函数，是匿名函数的一种特例，当匿名函数引用了外部作用域中的变量时就成了闭包函数，闭包函数是函数式编程语言的核心。方法是绑定到一个具体类型的特殊函数，Go 语言中的方法是依托于类型的，必须在编译时静态绑定。接口定义了方法的集合，这些方法依托于运行时的接口对象，因此接口对应的方法是在运行时动态绑定的。Go 语言通过隐式接口机制实现了鸭子面向对象模型。</p>
 <p>Go 语言程序的初始化和执行总是从 <code>main.main</code> 函数开始的。但是如果 <code>main</code> 包导入了其它的包，则会按照顺序将它们包含进 <code>main</code> 包里（这里的导入顺序依赖具体实现，一般可能是以文件名或包路径名的字符串顺序导入）。如果某个包被多次导入的话，在执行的时候只会导入一次。当一个包被导入时，如果它还导入了其它的包，则先将其它的包包含进来，然后创建和初始化这个包的常量和变量,再调用包里的 <code>init</code> 函数，如果一个包有多个 <code>init</code> 函数的话，调用顺序未定义（实现可能是以文件名的顺序调用），同一个文件内的多个 <code>init</code> 则是以出现的顺序依次调用（<code>init</code> 不是普通函数，可以定义有多个，所以也不能被其它函数调用）。最后，当 <code>main</code> 包的所有包级常量、变量被创建和初始化完成，并且 <code>init</code> 函数被执行后，才会进入 <code>main.main</code> 函数，程序开始正常执行。下图是 Go 程序函数启动顺序的示意图：</p>
@@ -544,6 +551,20 @@ func (p *grpcPlugin) GenerateImports(file *generator.FileDescriptor) {
 </code></pre>
 <p><code>generate.Plugin</code>接口对应的 <code>grpcPlugin</code> 类型的 <code>GenerateImports</code> 方法中使用的 <code>p.P(...)</code> 函数却是通过 <code>Init</code> 函数注入的 <code>generator.Generator</code> 对象实现。这里的 <code>generator.Generator</code> 对应一个具体类型，但是如果 <code>generator.Generator</code> 是接口类型的话我们甚至可以传入直接的实现。</p>
 <p>Go 语言通过几种简单特性的组合，就轻易就实现了鸭子面向对象和虚拟继承等高级特性，真的是不可思议。</p>
+
+
+                        <!-- 公众号 -->
+                        <hr>
+                        <table>
+                            <tr>
+                            <td>
+                            <img width="222px"  src="https://github.com/chai2010/advanced-go-programming-book/raw/master/css.png">
+                            </td>
+                            <td>
+                            <img width="222px"  src="https://github.com/chai2010/advanced-go-programming-book/raw/master/cch.png">
+                            </td>
+                            </tr>
+                        </table>
 
                         <div id="giscus-container"></div>
                         <footer class="page-footer">

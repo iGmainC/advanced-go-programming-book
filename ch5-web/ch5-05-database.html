@@ -153,6 +153,13 @@
                     <!-- Page table of contents -->
                     <div class="sidetoc"><nav class="pagetoc"></nav></div>
                     <main>
+                        <!-- 头部 -->
+                        <ul dir="auto">
+                        <li><em>KusonStack一站式可编程配置技术栈: <a href="https://github.com/KusionStack/kusion">https://github.com/KusionStack/kusion</a></em></li>
+                        <li><em>凹语言™: <a href="https://github.com/wa-lang/wa">https://github.com/wa-lang/wa</a></em></li>
+                        </ul>
+                        <hr>
+
                         <h1 id="55-database-和数据库打交道"><a class="header" href="#55-database-和数据库打交道">5.5 Database 和数据库打交道</a></h1>
 <p>本节将对 <code>db/sql</code> 官方标准库作一些简单分析，并介绍一些应用比较广泛的开源 ORM 和 SQL Builder。并从企业级应用开发和公司架构的角度来分析哪种技术栈对于现代的企业级应用更为合适。</p>
 <h2 id="551-从-databasesql-讲起"><a class="header" href="#551-从-databasesql-讲起">5.5.1 从 database/sql 讲起</a></h2>
@@ -328,6 +335,20 @@ func GetAllByProductIDAndCustomerID(ctx context.Context, productIDs []uint64, cu
 </code></pre>
 <p>像这样的代码，在上线之前把 DAO 层的变更集的 const 部分直接拿给 DBA 来进行审核，就比较方便了。代码中的 sqlutil.Named 是类似于 sqlx 中的 Named 函数，同时支持 where 表达式中的比较操作符和 in。</p>
 <p>这里为了说明简便，函数写得稍微复杂一些，仔细思考一下的话查询的导出函数还可以进一步进行简化。请读者朋友们自行尝试。</p>
+
+
+                        <!-- 公众号 -->
+                        <hr>
+                        <table>
+                            <tr>
+                            <td>
+                            <img width="222px"  src="https://github.com/chai2010/advanced-go-programming-book/raw/master/css.png">
+                            </td>
+                            <td>
+                            <img width="222px"  src="https://github.com/chai2010/advanced-go-programming-book/raw/master/cch.png">
+                            </td>
+                            </tr>
+                        </table>
 
                         <div id="giscus-container"></div>
                         <footer class="page-footer">

@@ -153,6 +153,13 @@
                     <!-- Page table of contents -->
                     <div class="sidetoc"><nav class="pagetoc"></nav></div>
                     <main>
+                        <!-- 头部 -->
+                        <ul dir="auto">
+                        <li><em>KusonStack一站式可编程配置技术栈: <a href="https://github.com/KusionStack/kusion">https://github.com/KusionStack/kusion</a></em></li>
+                        <li><em>凹语言™: <a href="https://github.com/wa-lang/wa">https://github.com/wa-lang/wa</a></em></li>
+                        </ul>
+                        <hr>
+
                         <h1 id="45-grpc-进阶"><a class="header" href="#45-grpc-进阶">4.5 gRPC 进阶</a></h1>
 <p>作为一个基础的 RPC 框架，安全和扩展是经常遇到的问题。本节将简单介绍如何对 gRPC 进行安全认证。然后介绍通过 gRPC 的截取器特性，以及如何通过截取器优雅地实现 Token 认证、调用跟踪以及 Panic 捕获等特性。最后介绍了 gRPC 服务如何和其他 Web 服务共存。</p>
 <h2 id="451-证书认证"><a class="header" href="#451-证书认证">4.5.1 证书认证</a></h2>
@@ -494,6 +501,20 @@ myServer := grpc.NewServer(
 </code></pre>
 <p>首先 gRPC 是建立在 HTTP/2 版本之上，如果 HTTP 不是 HTTP/2 协议则必然无法提供 gRPC 支持。同时，每个 gRPC 调用请求的 Content-Type 类型会被标注为 &quot;application/grpc&quot; 类型。</p>
 <p>这样我们就可以在 gRPC 端口上同时提供 Web 服务了。</p>
+
+
+                        <!-- 公众号 -->
+                        <hr>
+                        <table>
+                            <tr>
+                            <td>
+                            <img width="222px"  src="https://github.com/chai2010/advanced-go-programming-book/raw/master/css.png">
+                            </td>
+                            <td>
+                            <img width="222px"  src="https://github.com/chai2010/advanced-go-programming-book/raw/master/cch.png">
+                            </td>
+                            </tr>
+                        </table>
 
                         <div id="giscus-container"></div>
                         <footer class="page-footer">

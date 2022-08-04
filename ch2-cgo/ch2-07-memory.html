@@ -153,6 +153,13 @@
                     <!-- Page table of contents -->
                     <div class="sidetoc"><nav class="pagetoc"></nav></div>
                     <main>
+                        <!-- 头部 -->
+                        <ul dir="auto">
+                        <li><em>KusonStack一站式可编程配置技术栈: <a href="https://github.com/KusionStack/kusion">https://github.com/KusionStack/kusion</a></em></li>
+                        <li><em>凹语言™: <a href="https://github.com/wa-lang/wa">https://github.com/wa-lang/wa</a></em></li>
+                        </ul>
+                        <hr>
+
                         <h1 id="27-cgo-内存模型"><a class="header" href="#27-cgo-内存模型">2.7 CGO 内存模型</a></h1>
 <p>CGO 是架接 Go 语言和 C 语言的桥梁，它使二者在二进制接口层面实现了互通，但是我们要注意因两种语言的内存模型的差异而可能引起的问题。如果在 CGO 处理的跨语言函数调用时涉及到了指针的传递，则可能会出现 Go 语言和 C 语言共享某一段内存的场景。我们知道 C 语言的内存在分配之后就是稳定的，但是 Go 语言因为函数栈的动态伸缩可能导致栈中内存地址的移动 (这是 Go 和 C 内存模型的最大差异)。如果 C 语言持有的是移动之前的 Go 指针，那么以旧指针访问 Go 对象时会导致程序崩溃。</p>
 <h2 id="271-go-访问-c-内存"><a class="header" href="#271-go-访问-c-内存">2.7.1 Go 访问 C 内存</a></h2>
@@ -414,6 +421,20 @@ exit status 2
 </code></pre>
 <p>关闭 cgocheck 功能后再运行上面的代码就不会出现上面的异常的。但是要注意的是，如果 C 语言使用期间对应的内存被 Go 运行时释放了，将会导致更严重的崩溃问题。cgocheck 默认的值是 1，对应一个简化版本的检测，如果需要完整的检测功能可以将 cgocheck 设置为 2。</p>
 <p>关于 cgo 运行时指针检测的功能详细说明可以参考 Go 语言的官方文档。</p>
+
+
+                        <!-- 公众号 -->
+                        <hr>
+                        <table>
+                            <tr>
+                            <td>
+                            <img width="222px"  src="https://github.com/chai2010/advanced-go-programming-book/raw/master/css.png">
+                            </td>
+                            <td>
+                            <img width="222px"  src="https://github.com/chai2010/advanced-go-programming-book/raw/master/cch.png">
+                            </td>
+                            </tr>
+                        </table>
 
                         <div id="giscus-container"></div>
                         <footer class="page-footer">

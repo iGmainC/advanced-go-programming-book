@@ -153,6 +153,13 @@
                     <!-- Page table of contents -->
                     <div class="sidetoc"><nav class="pagetoc"></nav></div>
                     <main>
+                        <!-- 头部 -->
+                        <ul dir="auto">
+                        <li><em>KusonStack一站式可编程配置技术栈: <a href="https://github.com/KusionStack/kusion">https://github.com/KusionStack/kusion</a></em></li>
+                        <li><em>凹语言™: <a href="https://github.com/wa-lang/wa">https://github.com/wa-lang/wa</a></em></li>
+                        </ul>
+                        <hr>
+
                         <h1 id="39-delve-调试器"><a class="header" href="#39-delve-调试器">3.9 Delve 调试器</a></h1>
 <p>目前 Go 语言支持 GDB、LLDB 和 Delve 几种调试器。其中 GDB 是最早支持的调试工具，LLDB 是 macOS 系统推荐的标准调试工具。但是 GDB 和 LLDB 对 Go 语言的专有特性都缺乏很大支持，而只有 Delve 是专门为 Go 语言设计开发的调试工具。而且 Delve 本身也是采用 Go 语言开发，对 Windows 平台也提供了一样的支持。本节我们基于 Delve 简单解释如何调试 Go 汇编程序。</p>
 <h2 id="391-delve-入门"><a class="header" href="#391-delve-入门">3.9.1 Delve 入门</a></h2>
@@ -465,6 +472,20 @@ Breakpoint 2 set at 0x10501bf for main.asmSayHello() ./main_amd64.s:10
 </code></pre>
 <p>我们可以发现输出的 <code>[5]uint8 [72,101,108,108,111]</code> 刚好是对应 “Hello” 字符串。通过类似的方法，我们可以通过查看 SP 对应的栈指针位置，然后查看栈中局部变量的值。</p>
 <p>至此我们就掌握了 Go 汇编程序的简单调试技术。</p>
+
+
+                        <!-- 公众号 -->
+                        <hr>
+                        <table>
+                            <tr>
+                            <td>
+                            <img width="222px"  src="https://github.com/chai2010/advanced-go-programming-book/raw/master/css.png">
+                            </td>
+                            <td>
+                            <img width="222px"  src="https://github.com/chai2010/advanced-go-programming-book/raw/master/cch.png">
+                            </td>
+                            </tr>
+                        </table>
 
                         <div id="giscus-container"></div>
                         <footer class="page-footer">

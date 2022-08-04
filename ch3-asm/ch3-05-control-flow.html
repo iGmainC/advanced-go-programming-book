@@ -153,6 +153,13 @@
                     <!-- Page table of contents -->
                     <div class="sidetoc"><nav class="pagetoc"></nav></div>
                     <main>
+                        <!-- 头部 -->
+                        <ul dir="auto">
+                        <li><em>KusonStack一站式可编程配置技术栈: <a href="https://github.com/KusionStack/kusion">https://github.com/KusionStack/kusion</a></em></li>
+                        <li><em>凹语言™: <a href="https://github.com/wa-lang/wa">https://github.com/wa-lang/wa</a></em></li>
+                        </ul>
+                        <hr>
+
                         <h1 id="35-控制流"><a class="header" href="#35-控制流">3.5 控制流</a></h1>
 <p>程序主要有顺序、分支和循环几种执行流程。本节主要讨论如何将 Go 语言的控制流比较直观地转译为汇编程序，或者说如何以汇编思维来编写 Go 语言代码。</p>
 <h2 id="351-顺序执行"><a class="header" href="#351-顺序执行">3.5.1 顺序执行</a></h2>
@@ -342,6 +349,20 @@ LOOP_END:
 </code></pre>
 <p>其中 v0 和 result 变量复用了一个 BX 寄存器。在 LOOP_BEGIN 标号对应的指令部分，用 MOVQ 将 DX 寄存器初始化为 0，DX 对应变量 i，循环的迭代变量。在 LOOP_IF 标号对应的指令部分，使用 CMPQ 指令比较 DX 和 AX，如果循环没有结束则跳转到 LOOP_BODY 部分，否则跳转到 LOOP_END 部分结束循环。在 LOOP_BODY 部分，更新迭代变量并且执行循环体中的累加语句，然后直接跳转到 LOOP_IF 部分进入下一轮循环条件判断。LOOP_END 标号之后就是返回累加结果的语句。</p>
 <p>循环是最复杂的控制流，循环中隐含了分支和跳转语句。掌握了循环的写法基本也就掌握了汇编语言的基础写法。更极客的玩法是通过汇编语言打破传统的控制流，比如跨越多层函数直接返回，比如参考基因编辑的手段直接执行一个从 C 语言构建的代码片段等。总之掌握规律之后，你会发现其实汇编语言编程会变得异常简单和有趣。</p>
+
+
+                        <!-- 公众号 -->
+                        <hr>
+                        <table>
+                            <tr>
+                            <td>
+                            <img width="222px"  src="https://github.com/chai2010/advanced-go-programming-book/raw/master/css.png">
+                            </td>
+                            <td>
+                            <img width="222px"  src="https://github.com/chai2010/advanced-go-programming-book/raw/master/cch.png">
+                            </td>
+                            </tr>
+                        </table>
 
                         <div id="giscus-container"></div>
                         <footer class="page-footer">
