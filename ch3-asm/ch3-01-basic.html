@@ -163,10 +163,10 @@
                         <h1 id="31-快速入门"><a class="header" href="#31-快速入门">3.1 快速入门</a></h1>
 <p>Go 汇编程序始终是幽灵一样的存在。我们将通过分析简单的 Go 程序输出的汇编代码，然后照猫画虎用汇编实现一个简单的输出程序。</p>
 <h2 id="311-实现和声明"><a class="header" href="#311-实现和声明">3.1.1 实现和声明</a></h2>
-<p>Go 汇编语言并不是一个独立的语言，因为 Go 汇编程序无法独立使用。Go 汇编代码必须以 Go 包的方式组织，同时包中至少要有一个 Go 语言文件用于指明当前包名等基本包信息。如果 Go 汇编代码中定义的变量和函数要被其它 Go 语言代码引用，还需要通过 Go 语言代码将汇编中定义的符号声明出来。用于变量的定义和函数的定义 Go 汇编文件类似于 C 语言中的. c 文件，而用于导出汇编中定义符号的 Go 源文件类似于 C 语言的. h 文件。</p>
+<p>Go 汇编语言并不是一个独立的语言，因为 Go 汇编程序无法独立使用。Go 汇编代码必须以 Go 包的方式组织，同时包中至少要有一个 Go 语言文件用于指明当前包名等基本包信息。如果 Go 汇编代码中定义的变量和函数要被其它 Go 语言代码引用，还需要通过 Go 语言代码将汇编中定义的符号声明出来。用于变量的定义和函数的定义 Go 汇编文件类似于 C 语言中的 <code>.c</code> 文件，而用于导出汇编中定义符号的 Go 源文件类似于 C 语言的 <code>.h</code> 文件。</p>
 <h2 id="312-定义整数变量"><a class="header" href="#312-定义整数变量">3.1.2 定义整数变量</a></h2>
 <p>为了简单，我们先用 Go 语言定义并赋值一个整数变量，然后查看生成的汇编代码。</p>
-<p>首先创建一个 pkg.go 文件，内容如下：</p>
+<p>首先创建一个 <code>pkg.go</code> 文件，内容如下：</p>
 <pre><code class="language-go">package pkg
 
 var Id = 9527
@@ -193,13 +193,13 @@ DATA ·Id+1(SB)/1,$0x25
 <pre><code>GLOBL ·Id, $8
 </code></pre>
 <p>现在已经初步完成了用汇编定义一个整数变量的工作。</p>
-<p>为了便于其它包使用该 Id 变量，我们还需要在 Go 代码中声明该变量，同时也给变量指定一个合适的类型。修改 pkg.go 的内容如下：</p>
+<p>为了便于其它包使用该 Id 变量，我们还需要在 Go 代码中声明该变量，同时也给变量指定一个合适的类型。修改 <code>pkg.go</code> 的内容如下：</p>
 <pre><code class="language-go">package pkg
 
 var Id int
 </code></pre>
 <p>现状 Go 语言的代码不再是定义一个变量，语义变成了声明一个变量（声明一个变量时不能再进行初始化操作）。而 Id 变量的定义工作已经在汇编语言中完成了。</p>
-<p>我们将完整的汇编代码放到 pkg_amd64.s 文件中：</p>
+<p>我们将完整的汇编代码放到 <code>pkg_amd64.s</code> 文件中：</p>
 <pre><code>#include &quot;textflag.h&quot;
 
 GLOBL ·Id(SB),NOPTR,$8
@@ -213,7 +213,7 @@ DATA ·Id+5(SB)/1,$0x00
 DATA ·Id+6(SB)/1,$0x00
 DATA ·Id+7(SB)/1,$0x00
 </code></pre>
-<p>文件名 pkg_amd64.s 的后缀名表示 AMD64 环境下的汇编代码文件。</p>
+<p>文件名 <code>pkg_amd64.s</code> 的后缀名表示 AMD64 环境下的汇编代码文件。</p>
 <p>虽然 pkg 包是用汇编实现，但是用法和之前的 Go 语言版本完全一样：</p>
 <pre><code class="language-go">package main
 
@@ -226,7 +226,7 @@ func main() {
 <p>对于 Go 包的用户来说，用 Go 汇编语言或 Go 语言实现并无任何区别。</p>
 <h2 id="313-定义字符串变量"><a class="header" href="#313-定义字符串变量">3.1.3 定义字符串变量</a></h2>
 <p>在前一个例子中，我们通过汇编定义了一个整数变量。现在我们提高一点难度，尝试通过汇编定义一个字符串变量。虽然从 Go 语言角度看，定义字符串和整数变量的写法基本相同，但是字符串底层却有着比单个整数更复杂的数据结构。</p>
-<p>实验的流程和前面的例子一样，还是先用 Go 语言实现类似的功能，然后观察分析生成的汇编代码，最后用 Go 汇编语言仿写。首先创建 pkg.go 文件，用 Go 语言定义字符串：</p>
+<p>实验的流程和前面的例子一样，还是先用 Go 语言实现类似的功能，然后观察分析生成的汇编代码，最后用 Go 汇编语言仿写。首先创建 <code>pkg.go</code> 文件，用 Go 语言定义字符串：</p>
 <pre><code class="language-go">package pkg
 
 var Name = &quot;gopher&quot;
@@ -240,14 +240,14 @@ go.string.&quot;gopher&quot; SRODATA dupok size=6
   rel 0+8 t=1 go.string.&quot;gopher&quot;+0
 </code></pre>
 <p>输出中出现了一个新的符号 go.string.&quot;gopher&quot;，根据其长度和内容分析可以猜测是对应底层的 &quot;gopher&quot; 字符串数据。因为 Go 语言的字符串并不是值类型，Go 字符串其实是一种只读的引用类型。如果多个代码中出现了相同的 &quot;gopher&quot; 只读字符串时，程序链接后可以引用的同一个符号 go.string.&quot;gopher&quot;。因此，该符号有一个 SRODATA 标志表示这个数据在只读内存段，dupok 表示出现多个相同标识符的数据时只保留一个就可以了。</p>
-<p>而真正的 Go 字符串变量 Name 对应的大小却只有 16 个字节了。其实 Name 变量并没有直接对应 “gopher” 字符串，而是对应 16 字节大小的 reflect.StringHeader 结构体：</p>
+<p>而真正的 Go 字符串变量 <code>Name</code> 对应的大小却只有 16 个字节了。其实 <code>Name</code> 变量并没有直接对应 “gopher” 字符串，而是对应 16 字节大小的 reflect.StringHeader 结构体：</p>
 <pre><code class="language-go">type reflect.StringHeader struct {
 	Data uintptr
 	Len  int
 }
 </code></pre>
-<p>从汇编角度看，Name 变量其实对应的是 reflect.StringHeader 结构体类型。前 8 个字节对应底层真实字符串数据的指针，也就是符号 go.string.&quot;gopher&quot; 对应的地址。后 8 个字节对应底层真实字符串数据的有效长度，这里是 6 个字节。</p>
-<p>现在创建 pkg_amd64.s 文件，尝试通过汇编代码重新定义并初始化 Name 字符串：</p>
+<p>从汇编角度看，<code>Name</code> 变量其实对应的是 <code>reflect.StringHeader</code> 结构体类型。前 8 个字节对应底层真实字符串数据的指针，也就是符号 go.string.&quot;gopher&quot; 对应的地址。后 8 个字节对应底层真实字符串数据的有效长度，这里是 6 个字节。</p>
+<p>现在创建 pkg_amd64.s 文件，尝试通过汇编代码重新定义并初始化 <code>Name</code> 字符串：</p>
 <pre><code>GLOBL ·NameData(SB),$8
 DATA  ·NameData(SB)/8,$&quot;gopher&quot;
 
@@ -256,7 +256,7 @@ DATA  ·Name+0(SB)/8,$·NameData(SB)
 DATA  ·Name+8(SB)/8,$6
 </code></pre>
 <p>因为在 Go 汇编语言中，go.string.&quot;gopher&quot; 不是一个合法的符号，因此我们无法通过手工创建（这是给编译器保留的部分特权，因为手工创建类似符号可能打破编译器输出代码的某些规则）。因此我们新创建了一个 ·NameData 符号表示底层的字符串数据。然后定义 ·Name 符号内存大小为 16 字节，其中前 8 个字节用 ·NameData 符号对应的地址初始化，后 8 个字节为常量 6 表示字符串长度。</p>
-<p>当用汇编定义好字符串变量并导出之后，还需要在 Go 语言中声明该字符串变量。然后就可以用 Go 语言代码测试 Name 变量了：</p>
+<p>当用汇编定义好字符串变量并导出之后，还需要在 Go 语言中声明该字符串变量。然后就可以用 Go 语言代码测试 <code>Name</code> 变量了：</p>
 <pre><code class="language-go">package main
 
 import pkg &quot;path/to/pkg&quot;

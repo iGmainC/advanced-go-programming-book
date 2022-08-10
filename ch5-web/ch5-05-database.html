@@ -242,16 +242,16 @@ func main() {
 <p>是的，所以社区才会有各种各样的 SQL Builder 和 ORM 百花齐放。</p>
 <h2 id="552-提高生产效率的-orm-和-sql-builder"><a class="header" href="#552-提高生产效率的-orm-和-sql-builder">5.5.2 提高生产效率的 ORM 和 SQL Builder</a></h2>
 <p>在 Web 开发领域常常提到的 ORM 是什么？我们先看看万能的维基百科：</p>
-<pre><code>对象关系映射（英语：Object Relational Mapping，简称 ORM，或 O/RM，或 O/R mapping），
-是一种程序设计技术，用于实现面向对象编程语言里不同类型系统的数据之间的转换。
-从效果上说，它其实是创建了一个可在编程语言里使用的 “虚拟对象数据库”。
-</code></pre>
+<blockquote>
+<p>对象关系映射（英语：Object Relational Mapping，简称 ORM，或 O/RM，或 O/R mapping），是一种程序设计技术，用于实现面向对象编程语言里不同类型系统的数据之间的转换。
+从效果上说，它其实是创建了一个可在编程语言里使用的 “虚拟对象数据库”。</p>
+</blockquote>
 <p>最为常见的 ORM 做的是从 db 到程序的类或结构体这样的映射。所以你手边的程序可能是从 MySQL 的表映射你的程序内的类。我们可以先来看看其它的程序语言里的 ORM 写起来是怎么样的感觉：</p>
 <pre><code class="language-python">&gt;&gt;&gt; from blog.models import Blog
 &gt;&gt;&gt; b = Blog(name='Beatles Blog', tagline='All the latest Beatles news.')
 &gt;&gt;&gt; b.save()
 </code></pre>
-<p>完全没有数据库的痕迹，没错，ORM 的目的就是屏蔽掉 DB 层，很多语言的 ORM 只要把你的类或结构体定义好，再用特定的语法将结构体之间的一对一或者一对多关系表达出来。那么任务就完成了。然后你就可以对这些映射好了数据库表的对象进行各种操作，例如 save，create，retrieve，delete。至于 ORM 在背地里做了什么阴险的勾当，你是不一定清楚的。使用 ORM 的时候，我们往往比较容易有一种忘记了数据库的直观感受。举个例子，我们有个需求：向用户展示最新的商品列表，我们再假设，商品和商家是 1:1 的关联关系，我们就很容易写出像下面这样的代码：</p>
+<p>完全没有数据库的痕迹，没错，ORM 的目的就是屏蔽掉 DB 层，很多语言的 ORM 只要把你的类或结构体定义好，再用特定的语法将结构体之间的一对一或者一对多关系表达出来。那么任务就完成了。然后你就可以对这些映射好了数据库表的对象进行各种操作，例如 save、create、retrieve、delete。至于 ORM 在背地里做了什么阴险的勾当，你是不一定清楚的。使用 ORM 的时候，我们往往比较容易有一种忘记了数据库的直观感受。举个例子，我们有个需求：向用户展示最新的商品列表，我们再假设，商品和商家是 1:1 的关联关系，我们就很容易写出像下面这样的代码：</p>
 <pre><code class="language-python"># 伪代码
 shopList := []
 for product in productList {
@@ -333,7 +333,7 @@ func GetAllByProductIDAndCustomerID(ctx context.Context, productIDs []uint64, cu
 	return orderList, err
 }
 </code></pre>
-<p>像这样的代码，在上线之前把 DAO 层的变更集的 const 部分直接拿给 DBA 来进行审核，就比较方便了。代码中的 sqlutil.Named 是类似于 sqlx 中的 Named 函数，同时支持 where 表达式中的比较操作符和 in。</p>
+<p>像这样的代码，在上线之前把 DAO 层的变更集的 const 部分直接拿给 DBA 来进行审核，就比较方便了。代码中的 <code>sqlutil.Named</code> 是类似于 sqlx 中的 <code>Named</code> 函数，同时支持 where 表达式中的比较操作符和 in。</p>
 <p>这里为了说明简便，函数写得稍微复杂一些，仔细思考一下的话查询的导出函数还可以进一步进行简化。请读者朋友们自行尝试。</p>
 
 

@@ -224,7 +224,7 @@ func main() {
 
 </code></pre>
 <p>每一个 handler 里都有之前提到的记录运行时间的代码，每次增加新的路由我们也同样需要把这些看起来长得差不多的代码拷贝到我们需要的地方去。因为代码不太多，所以实施起来也没有遇到什么大问题。</p>
-<p>渐渐的我们的系统增加到了 30 个路由和 <code>handler</code> 函数，每次增加新的 handler，我们的第一件工作就是把之前写的所有和业务逻辑无关的周边代码先拷贝过来。</p>
+<p>渐渐的我们的系统增加到了 30 个路由和 handler 函数，每次增加新的 handler，我们的第一件工作就是把之前写的所有和业务逻辑无关的周边代码先拷贝过来。</p>
 <p>接下来系统安稳地运行了一段时间，突然有一天，老板找到你，我们最近找人新开发了监控系统，为了系统运行可以更加可控，需要把每个接口运行的耗时数据主动上报到我们的监控系统里。给监控系统起个名字吧，叫 metrics。现在你需要修改代码并把耗时通过 HTTP Post 的方式发给 metrics 系统了。我们来修改一下 <code>helloHandler()</code>：</p>
 <pre><code class="language-go">func helloHandler(wr http.ResponseWriter, r *http.Request) {
 	timeStart := time.Now()
@@ -282,7 +282,7 @@ func (f HandlerFunc) ServeHTTP(w ResponseWriter, r *Request) {
 <p>只要你的 handler 函数签名是：</p>
 <pre><code class="language-go">func (ResponseWriter, *Request)
 </code></pre>
-<p>那么这个 <code>handler</code> 和 <code>http.HandlerFunc()</code> 就有了一致的函数签名，可以将该 <code>handler()</code> 函数进行类型转换，转为 <code>http.HandlerFunc</code>。而 <code>http.HandlerFunc</code> 实现了 <code>http.Handler</code> 这个接口。在 <code>http</code> 库需要调用你的 handler 函数来处理 http 请求时，会调用 <code>HandlerFunc()</code> 的 <code>ServeHTTP()</code> 函数，可见一个请求的基本调用链是这样的：</p>
+<p>那么这个 handler 和 <code>http.HandlerFunc()</code> 就有了一致的函数签名，可以将该 <code>handler()</code> 函数进行类型转换，转为 <code>http.HandlerFunc</code>。而 <code>http.HandlerFunc</code> 实现了 <code>http.Handler</code> 这个接口。在 <code>http</code> 库需要调用你的 handler 函数来处理 http 请求时，会调用 <code>HandlerFunc()</code> 的 <code>ServeHTTP()</code> 函数，可见一个请求的基本调用链是这样的：</p>
 <pre><code class="language-go">h = getHandler() =&gt; h.ServeHTTP(w, r) =&gt; h(w, r)
 </code></pre>
 <p>上面提到的把自定义 <code>handler</code> 转换为 <code>http.HandlerFunc()</code> 这个过程是必须的，因为我们的 <code>handler</code> 没有直接实现 <code>ServeHTTP</code> 这个接口。上面的代码中我们看到的 HandleFunc(注意 HandlerFunc 和 HandleFunc 的区别) 里也可以看到这个强制转换过程：</p>
@@ -378,7 +378,7 @@ throttler.go
   =&gt; 通过定长大小的 channel 存储 token，并通过这些 token 对接口进行限流
 </code></pre>
 <p>每一个 Web 框架都会有对应的中间件组件，如果你有兴趣，也可以向这些项目贡献有用的中间件，只要合理一般项目的维护人也愿意合并你的 Pull Request。</p>
-<p>比如开源界很火的 gin 这个框架，就专门为用户贡献的中间件开了一个仓库，见 <em>图 5-9</em>：</p>
+<p>比如开源界很火的 gin 这个框架，就专门为用户贡献的中间件开了一个仓库，见<em>图 5-9</em>：</p>
 <p><img src="../images/ch6-03-gin_contrib.png" alt="" /></p>
 <p><em>图 5-9 gin 的中间件仓库</em></p>
 <p>如果读者去阅读 gin 的源码的话，可能会发现 gin 的中间件中处理的并不是 <code>http.Handler</code>，而是一个叫 <code>gin.HandlerFunc</code> 的函数类型，和本节中讲解的 <code>http.Handler</code> 签名并不一样。不过 gin 的 <code>handler</code> 也只是针对其框架的一种封装，中间件的原理与本节中的说明是一致的。</p>
