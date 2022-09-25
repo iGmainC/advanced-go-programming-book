@@ -401,7 +401,7 @@ func main() {
 	println(msg)
 }
 </code></pre>
-<p>可保证打印出“hello, world”。该程序首先对 <code>msg</code> 进行写入，然后在 <code>done</code> 管道上发送同步信号，随后从 <code>done</code> 接收对应的同步信号，最后执行 <code>println</code> 函数。</p>
+<p>可保证打印出“你好, 世界”。该程序首先对 <code>msg</code> 进行写入，然后在 <code>done</code> 管道上发送同步信号，随后从 <code>done</code> 接收对应的同步信号，最后执行 <code>println</code> 函数。</p>
 <p>若在关闭 Channel 后继续从中接收数据，接收者就会收到该 Channel 返回的零值。因此在这个例子中，用 <code>close(c)</code> 关闭管道代替 <code>done &lt;- false</code> 依然能保证该程序产生相同的行为。</p>
 <pre><code class="language-go">var done = make(chan bool)
 var msg string
