@@ -47,25 +47,25 @@
         <script type='text/javascript'>
             let markAllContentHasLoadedForPrinting = () =>
                 window.setTimeout(
-                    () => {{
+                    () => {
                         let p = document.createElement('div');
                         p.setAttribute('id', 'content-has-all-loaded-for-mdbook-pdf-generation');
                         document.body.appendChild(p);
-                    }}, 100
+                    }, 100
                 );
 
-            window.addEventListener('load', () => {{
+            window.addEventListener('load', () => {
                 // Expand all the <details> elements for printing.
                 r = document.getElementsByTagName('details');
                 for (let i of r)
                     i.open = true;
 
-                try {{
+                try {
                     MathJax.Hub.Register.StartupHook('End', markAllContentHasLoadedForPrinting);
-                }} catch (e) {{
+                } catch (e) {
                     markAllContentHasLoadedForPrinting();
-                }}
-            }});
+                }
+            });
         </script>
 
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
@@ -7988,7 +7988,7 @@ $ openssl req -new -x509 -days 3650 \
 	...
 }
 </code></pre>
-<p>其中 credentials.NewClientTLSFromFile 是构造客户端用的证书对象，第一个参数是服务器的证书文件，第二个参数是签发证书的服务器的名字。然后通过 grpc.WithTransportCredentials(creds) 将证书对象转为参数选项传人 grpc.Dial 函数。</p>
+<p>其中 credentials.NewClientTLSFromFile 是构造客户端用的证书对象，第一个参数是服务器的证书文件，第二个参数是签发证书的服务器的名字。然后通过 grpc.WithTransportCredentials(creds) 将证书对象转为参数选项传入 grpc.Dial 函数。</p>
 <p>以上这种方式，需要提前将服务器的证书告知客户端，这样客户端在连接服务器时才能进行对服务器证书认证。在复杂的网络环境中，服务器证书的传输本身也是一个非常危险的问题。如果在中间某个环节，服务器证书被监听或替换那么对服务器的认证也将不再可靠。</p>
 <p>为了避免证书的传递过程中被篡改，可以通过一个安全可靠的根证书分别对服务器和客户端的证书进行签名。这样客户端或服务器在收到对方的证书后可以通过根证书进行验证证书的有效性。</p>
 <p>根证书的生成方式和自签名证书的生成方式类似：</p>
@@ -8118,7 +8118,7 @@ func (a *Authentication) RequireTransportSecurity() bool {
 }
 </code></pre>
 <p>在 GetRequestMetadata 方法中，我们返回的认证信息包装 user 和 password 两个信息。为了演示代码简单，RequireTransportSecurity 方法表示不要求底层使用安全连接。</p>
-<p>然后在每次请求 gRPC 服务时就可以将 Token 信息作为参数选项传人：</p>
+<p>然后在每次请求 gRPC 服务时就可以将 Token 信息作为参数选项传入：</p>
 <pre><code class="language-go">func main() {
 	auth := Authentication{
 		User:    &quot;gopher&quot;,
@@ -8134,7 +8134,7 @@ func (a *Authentication) RequireTransportSecurity() bool {
 	...
 }
 </code></pre>
-<p>通过 grpc.WithPerRPCCredentials 函数将 Authentication 对象转为 grpc.Dial 参数。因为这里没有启用安全连接，需要传人 grpc.WithInsecure() 表示忽略证书认证。</p>
+<p>通过 grpc.WithPerRPCCredentials 函数将 Authentication 对象转为 grpc.Dial 参数。因为这里没有启用安全连接，需要传入 grpc.WithInsecure() 表示忽略证书认证。</p>
 <p>然后在 gRPC 服务端的每个方法中通过 Authentication 类型的 Auth 方法进行身份认证：</p>
 <pre><code class="language-go">type grpcServer struct {auth *Authentication}
 
